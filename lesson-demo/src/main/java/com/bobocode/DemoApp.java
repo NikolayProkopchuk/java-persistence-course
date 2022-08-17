@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 public class DemoApp {
     @SneakyThrows
@@ -37,11 +38,10 @@ public class DemoApp {
         return dataSource;
     }
 
-    private static DataSource initializePooledDataSource() {
-        PGSimpleDataSource dataSource = new PooledDataSource();
-        dataSource.setURL("jdbc:postgresql://localhost:5432/postgres?currentSchema=test");
-        dataSource.setUser("postgres");
-        dataSource.setPassword("postgres");
+    private static DataSource initializePooledDataSource() throws SQLException, InterruptedException {
+        PGSimpleDataSource dataSource = new PooledDataSource("jdbc:postgresql://localhost:5432/postgres?currentSchema=test",
+                "postgres",
+                "postgres");
         return dataSource;
     }
 }
