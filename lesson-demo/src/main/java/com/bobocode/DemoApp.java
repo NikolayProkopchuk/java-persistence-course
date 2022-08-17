@@ -1,5 +1,6 @@
 package com.bobocode;
 
+import com.bobocode.pool.PooledDataSource;
 import lombok.SneakyThrows;
 import org.postgresql.ds.PGSimpleDataSource;
 
@@ -30,17 +31,17 @@ public class DemoApp {
 
     private static DataSource initializeDataSource() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setURL("jdbc:postgresql://localhost:5432/postgres");
-        dataSource.setUser("ju22user");
-        dataSource.setPassword("ju22pass");
+        dataSource.setURL("jdbc:postgresql://localhost:5432/postgres?currentSchema=test");
+        dataSource.setUser("postgres");
+        dataSource.setPassword("postgres");
         return dataSource;
     }
 
     private static DataSource initializePooledDataSource() {
-        PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setURL("jdbc:postgresql://localhost:5432/postgres");
-        dataSource.setUser("ju22user");
-        dataSource.setPassword("ju22pass");
+        PGSimpleDataSource dataSource = new PooledDataSource();
+        dataSource.setURL("jdbc:postgresql://localhost:5432/postgres?currentSchema=test");
+        dataSource.setUser("postgres");
+        dataSource.setPassword("postgres");
         return dataSource;
     }
 }
