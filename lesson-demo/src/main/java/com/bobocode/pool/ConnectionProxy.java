@@ -22,12 +22,8 @@ import java.util.concurrent.Executor;
 
 public class ConnectionProxy implements Connection {
 
-    // todo: 1. store a physical connection and a pool reference
-    // todo: 2. override method close
-    // todo: 3. delegate all method invocations to a physical connection
-
-    private Connection connection;
-    private Queue<Connection> pool;
+    private final Connection connection;
+    private final Queue<Connection> pool;
 
     public ConnectionProxy(Connection connection, Queue<Connection> pool) {
         this.connection = connection;
